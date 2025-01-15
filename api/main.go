@@ -6,7 +6,7 @@ import (
 
 	"github.com/daiki-trnsk/go-debatemap/controllers"
 	"github.com/daiki-trnsk/go-debatemap/database"
-	customMiddleware "github.com/daiki-trnsk/go-debatemap/middleware"
+	// customMiddleware "github.com/daiki-trnsk/go-debatemap/middleware"
 	"github.com/daiki-trnsk/go-debatemap/routes"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
