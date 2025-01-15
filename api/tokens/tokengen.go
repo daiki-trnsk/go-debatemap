@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/daiki-trnsk/go-ecommerce/database"
+	"github.com/daiki-trnsk/go-debatemap/api/database"
 
 	jwt "github.com/dgrijalva/jwt-go"
 	"go.mongodb.org/mongo-driver/bson"

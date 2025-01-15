@@ -2,7 +2,7 @@ package middleware
 
 import (
 	"net/http"
-	token "github.com/daiki-trnsk/go-debatemap/tokens"
+	token "github.com/daiki-trnsk/go-debatemap/api/tokens"
 	"github.com/labstack/echo/v4"
 )
 
