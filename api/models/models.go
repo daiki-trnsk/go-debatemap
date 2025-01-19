@@ -20,9 +20,10 @@ type User struct {
 }
 
 type DebateMap struct {
-    ID               primitive.ObjectID `bson:"_id,omitempty"`
-    Title            string             `bson:"title"`
-    RegistrationDate time.Time          `bson:"registration_date"`
+    ID               primitive.ObjectID     `bson:"_id,omitempty"`
+    Title            string                 `bson:"title"`
+    RegistrationDate time.Time              `bson:"registration_date"`
+	RootNodeTopic    string                 `bson:"root_node_topic" json:"root_node_topic"`
     NodesJSON        map[string]interface{} `bson:"nodes_json" json:"nodes_json"`
-    UserID           primitive.ObjectID `bson:"user_id"`
+    UserID           primitive.ObjectID     `bson:"user_id"`
 }

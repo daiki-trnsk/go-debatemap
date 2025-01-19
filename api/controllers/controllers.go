@@ -124,6 +124,13 @@ func AddDebateMap(c echo.Context) error {
 	}
 	fmt.Printf("Received DebateMap: %+v\n", debatemap)
 	debatemap.ID = primitive.NewObjectID()
+	debatemap.RegistrationDate = time.Now()
+	debatemap.NodesJSON = map[string]interface{}{
+		"id":       "root",
+		"topic":    debatemap.RootNodeTopic,
+		"expanded": true,
+		"children": []interface{}{},
+	}
 	_, anyerr := DebateMapCollection.InsertOne(ctx, debatemap)
 	if anyerr != nil {
 		return c.JSON(http.StatusInternalServerError, "Not Created")

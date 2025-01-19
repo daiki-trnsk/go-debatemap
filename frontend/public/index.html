@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>DebateMap</title>
+    <link rel="stylesheet" href="/css/general.css">
+    <script type="text/javascript" src="/js/general.js"></script>
+    <script type="text/javascript" src="/js/api.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <h1 class="title">DebateMap</h1>
+        <button onclick="logout()" class="logoutButton">LOGOUT</button>
+        <div class="userName">
+            <p id="welcome"></p>
+        </div>
+    </div>
+    <div class="main">
+        <div>
+            <button onclick="location.href='mindmap-cerate.html'" class="createButton">+</button>
+        </div>
+        <div class="startDebate">
+            <h1>議論を始めましょう</h1>
+            <h3>参加したいタイトルをクリック　or　右下の＋から新たな議論を始める</h3>
+        </div>
+
+        <ul id="data-list">
+            <!-- ここにデータが表⽰される -->
+        </ul>
+    </div>
+    <div class="footer">
+
+    </div>
+</body>
+<script>
+    // if (!checkLogin()) {
+    //     handleLoginError();
+    // }
+    // getMeApi().then((data) => {
+    //     console.log("data:", data);
+    //     const welcomeH1 = document.getElementById("welcome");
+    //     welcomeH1.innerText = `${data.nickname}さん`;
+    // });
+    //const API_HOST = "http://localhost:8000";
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        return `${year}/${month}/${day} ${hours}:${minutes}`;
+    };
+
+    const getMultiReplies = async () => {
+        const MULTI_ENDPOINT = "/debatemaps_list";
+        const URL = API_HOST + MULTI_ENDPOINT;
+        const response = await fetch(URL, {
+            method: "GET",
+            // headers: {
+            //     Authorization: `Bearer ${localStorage.getItem("token")}`,
+            // },
+        });
+        const jsondata = await response.json();
+        const dataList = document.getElementById("data-list");
+        jsondata.forEach((mindmap) => {
+            const li = document.createElement("li");
+            li.className = "data-item";
+            li.innerHTML = `
+<a href="/mindmap-detail.html?mindmapId=${mindmap.ID}">${mindmap.ID}
+<br><h2>${mindmap.Title}</h2>
+<br>${formatDate(mindmap.RegistrationDate)}</a> `;
+            dataList.appendChild(li);
+        });
+    };
+    getMultiReplies();
+</script>
+
+</html>

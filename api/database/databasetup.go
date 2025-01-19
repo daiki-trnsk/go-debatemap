@@ -11,7 +11,9 @@ import (
 )
 
 func DBSet() *mongo.Client {
-	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://development:testpassword@localhost:27017"))
+	uri := "mongodb://localhost:27017"
+	clientOptions := options.Client().ApplyURI(uri)
+	client, err := mongo.NewClient(clientOptions)
 	if err != nil {
 		log.Fatal(err)
 	}

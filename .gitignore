@@ -1,0 +1,8 @@
+# Node.js dependencies
+node_modules/
+
+# その他の除外したいファイルやディレクトリ
+data/
+*.log
+.DS_Store
+Thumbs.db
